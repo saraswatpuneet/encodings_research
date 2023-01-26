@@ -1,0 +1,11 @@
+[package]
+name = "encodings_research"
+version = "0.1.0"
+authors = ["Puneet Saraswat <puneet.saraswat@unfinished.com>"]
+edition = "2021"
+
+[dependencies]
+
+[dev-dependencies]
+
+[features]
