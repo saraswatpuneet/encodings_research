@@ -6,6 +6,8 @@ pub trait Encoding {
 pub struct EncodingMetrics {
     pub encoded_size: usize,
     pub decoding_time: f64,
+    pub compression_ratio: f64,
+    pub encoding_time: f64,
 }
 
 impl Encoding {
@@ -18,9 +20,18 @@ impl Encoding {
         let decoded = self.decode(&encoded);
         let decoding_time = start.elapsed();
 
+        let encoded_size = encoded.len();
+
+        let compression_ratio = encoded_size as f64 / data.len() as f64;
+
+        let encoding_time = encoding_time.as_secs_f64();
+        let decoding_time = decoding_time.as_secs_f64();
+
         EncodingMetrics {
-            encoded_size: encoded.len(),
-            decoding_time: decoding_time.as_secs_f64(),
+            encoded_size,
+            decoding_time,
+            compression_ratio,
+            encoding_time,
         }
     }
 }
